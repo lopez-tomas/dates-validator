@@ -6,15 +6,13 @@ int cantidadDiasDelMes(int, int);
 int esFechaValida(int, int, int);
 //##############################//
 int valNumero();
-int fecha(int, int, int);
-int sumarDia(int, int, int);
-int restarDia(int, int, int);
-int sumarNdias(int, int, int);
-int restarNdias(int, int, int);
-void mostrarFecha(int);
+void sumarDia(int, int, int);
+void restarDia(int, int, int);
+void sumarNdias(int, int, int);
+void restarNdias(int, int, int);
 
 int main(){
-    int dia, mes, year, opcion, fecha, b = 0;
+    int dia, mes, year, opcion, b = 0;
 
     do{
         system("cls");
@@ -28,32 +26,32 @@ int main(){
     do{
         if(b != 0)
             system("cls");
-            printf("Opciones:"
-                   "\n\t1. Sumar un dia"
-                   "\n\t2. Restar un dia"
-                   "\n\t3. Sumar n dias"
-                   "\n\t4. Restar n dias\n"
-                   "\n\t9. Salir\n");
-            scanf("%d", &opcion);
-            b = 1;
+
+        printf("Opciones:"
+                "\n\t1. Sumar un dia"
+                "\n\t2. Restar un dia"
+                "\n\t3. Sumar n dias"
+                "\n\t4. Restar n dias\n"
+                "\n\t9. Salir\n");
+        scanf("%d", &opcion);
     }while(opcion < 1 || opcion > 4 && !(opcion == 9));
 
     switch(opcion){
         case 1:
-            fecha = sumarDia(dia,mes,year);
-            mostrarFecha(fecha);
+            sumarDia(dia,mes,year);
+            //mostrarFecha(fecha);
             break;
         case 2:
-            fecha = restarDia(dia,mes,year);
-            mostrarFecha(fecha);
+            restarDia(dia,mes,year);
+            //mostrarFecha(fecha);
             break;
         case 3:
-            fecha = sumarNdias(dia,mes,year);
-            mostrarFecha(fecha);
+            sumarNdias(dia,mes,year);
+            //mostrarFecha(fecha);
             break;
         case 4:
-            fecha = restarNdias(dia,mes,year);
-            mostrarFecha(fecha);
+            restarNdias(dia,mes,year);
+            //mostrarFecha(fecha);
             break;
         case 9:
             system("cls");
@@ -114,7 +112,7 @@ int valNumero(){
     return n;
 }
 
-int sumarDia(int d, int m, int a){
+void sumarDia(int d, int m, int a){
     int dias, f;
     dias=cantidadDiasDelMes(m,a);
 
@@ -122,6 +120,7 @@ int sumarDia(int d, int m, int a){
         d+=1;
     }else{
         if(m<12){
+
             m+=1;
             d=1;
         }else{
@@ -130,12 +129,11 @@ int sumarDia(int d, int m, int a){
             a+=1;
         }
     }
-    f = fecha(d,m,a);
-
-    return f;
+    system("cls");
+    printf("Nueva fecha: %d/%d/%d\n",d,m,a);
 }
 
-int restarDia(int d, int m, int a){
+void restarDia(int d, int m, int a){
     int f;
 
     if(d>1){
@@ -150,50 +148,24 @@ int restarDia(int d, int m, int a){
             d=cantidadDiasDelMes(m,a);
         }
     }
-    f = fecha(d,m,a);
-
-    return f;
+    system("cls");
+    printf("Nueva fecha: %d/%d/%d\n",d,m,a);
 }
 
-int sumarNdias(int d, int m, int a){
+void sumarNdias(int d, int m, int a){
     int num;
     num = valNumero();
 
+    system("cls");
+    printf("Nueva fecha: %d/%d/%d\n",d,m,a);
 }
 
-int restarNdias(int d, int m, int a){
+void restarNdias(int d, int m, int a){
     int num;
     num = valNumero();
 
+    system("cls");
+    printf("Nueva fecha: %d/%d/%d\n",d,m,a);
 }
 
-int fecha(int d, int m, int a){
-    int f;
-    if(d<10){
-        d*=100000;
-        m*=10000;
-    }else{
-        d*=1000000;
-        m*=10000;
-    }
-    f=d+m+a;
 
-    return f;
-}
-
-void mostrarFecha(int f){
-    int d, mr, m, a;
-    if(f<999999){
-        d = f/100000;
-        mr = f%100000;
-        m = mr/10000;
-        a = mr%10000;
-    }else{
-        d = f/1000000;
-        mr = f%1000000;
-        m = mr/10000;
-        a = mr%10000;
-    }
-
-    printf("\n%d/%d/%d",d,m,a);
-}
