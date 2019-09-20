@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define DIAS 365
 
 int bisiesto(int);
 int cantidadDiasDelMes(int, int);
@@ -39,19 +40,15 @@ int main(){
     switch(opcion){
         case 1:
             sumarDia(dia,mes,year);
-            //mostrarFecha(fecha);
             break;
         case 2:
             restarDia(dia,mes,year);
-            //mostrarFecha(fecha);
             break;
         case 3:
             sumarNdias(dia,mes,year);
-            //mostrarFecha(fecha);
             break;
         case 4:
             restarNdias(dia,mes,year);
-            //mostrarFecha(fecha);
             break;
         case 9:
             system("cls");
@@ -119,16 +116,16 @@ void sumarDia(int d, int m, int a){
     dias=cantidadDiasDelMes(m,a);
 
     if(d<dias){
-        d+=1;
+        d++;
     }else{
         if(m<12){
 
-            m+=1;
+            m++;
             d=1;
         }else{
             m=1;
             d=1;
-            a+=1;
+            a++;
         }
     }
     system("cls");
@@ -137,14 +134,14 @@ void sumarDia(int d, int m, int a){
 
 void restarDia(int d, int m, int a){
     if(d>1){
-        d-=1;
+        d--;
     }else{
         if(m>1){
-            m-=1;
+            m--;
             d=cantidadDiasDelMes(m,a);
         }else{
             m=12;
-            a-=1;
+            a--;
             d=cantidadDiasDelMes(m,a);
         }
     }
@@ -153,8 +150,27 @@ void restarDia(int d, int m, int a){
 }
 
 void sumarNdias(int d, int m, int a){
-    int num;
+    int num, dias, resta, cant;
     num = valNumero();
+    resta = dias-d-1;
+
+    do{
+        dias = cantidadDiasDelMes(m,a);
+        if(num==DIAS){
+            a++;
+            num=0;
+        }else if(num>DIAS){
+            num-= DIAS;
+            a++;
+
+
+            printf("Dias restantes: %d\n", num);
+            printf("%d/%d/%d",d,m,a);
+        }else{
+            d = 1;
+
+        }
+    }while(num>0);
 
     system("cls");
     printf("Nueva fecha: %d/%d/%d\n",d,m,a);
