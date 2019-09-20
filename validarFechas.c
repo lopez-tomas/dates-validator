@@ -107,13 +107,15 @@ int valNumero(){
     do{
         printf("\nIngrese un numero: ");
         scanf("%d", &n);
-    }while(n<=0);
+        if(n<0)
+            n*=-1;
+    }while(n==0);
 
     return n;
 }
 
 void sumarDia(int d, int m, int a){
-    int dias, f;
+    int dias;
     dias=cantidadDiasDelMes(m,a);
 
     if(d<dias){
@@ -134,8 +136,6 @@ void sumarDia(int d, int m, int a){
 }
 
 void restarDia(int d, int m, int a){
-    int f;
-
     if(d>1){
         d-=1;
     }else{
