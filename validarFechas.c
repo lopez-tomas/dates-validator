@@ -150,9 +150,8 @@ void restarDia(int d, int m, int a){
 }
 
 void sumarNdias(int d, int m, int a){
-    int num, dias, resta, cant;
+    int num, dias, cont = 0;
     num = valNumero();
-    resta = dias-d-1;
 
     do{
         dias = cantidadDiasDelMes(m,a);
@@ -162,17 +161,27 @@ void sumarNdias(int d, int m, int a){
         }else if(num>DIAS){
             num-= DIAS;
             a++;
-
-
             printf("Dias restantes: %d\n", num);
             printf("%d/%d/%d",d,m,a);
         }else{
-            d = 1;
+            if(num>dias){
+                num-= dias;
+                m++;
+                d++;
+                cont++;
+            }else{
+                d+=num-cont;
+                num-=num;
+                printf("\n\nDias restantes: %d\n", num);
+                break;
+            }
 
+            printf("\n\nDias restantes: %d\n", num);
+            printf("%d/%d/%d",d,m,a);
         }
     }while(num>0);
 
-    system("cls");
+    //system("cls");
     printf("Nueva fecha: %d/%d/%d\n",d,m,a);
 }
 
